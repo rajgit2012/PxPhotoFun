@@ -64,7 +64,7 @@ public class PhotoListActivity extends AppCompatActivity implements SearchView.O
         /*mPxListView.setLayoutManager(new StaggeredGridLayoutManager(2,
                 StaggeredGridLayoutManager.VERTICAL));*/
 
-        final Call<PhotoSearchResults> results = service.searchPhotos("spring");
+        final Call<PhotoSearchResults> results = service.searchPhotos("summer");
         results.enqueue(new Callback<PhotoSearchResults>() {
             @Override
             public void onResponse(Response<PhotoSearchResults> response, Retrofit retrofit) {
@@ -123,6 +123,7 @@ public class PhotoListActivity extends AppCompatActivity implements SearchView.O
 
 
             holder.name.setText(mPhotos.get(position).name);
+            holder.title.setText(mPhotos.get(position).description);
 
         }
     }
@@ -130,6 +131,7 @@ public class PhotoListActivity extends AppCompatActivity implements SearchView.O
     private static class AppViewHolder extends RecyclerView.ViewHolder {
         public final ImageView image;
         public final TextView name;
+        public final TextView title;
 
         //name
 
@@ -137,6 +139,7 @@ public class PhotoListActivity extends AppCompatActivity implements SearchView.O
             super(view);
             this.image = (ImageView) view.findViewById(R.id.image);
             this.name = (TextView) view.findViewById(R.id.txtDesc);
+            this.title = (TextView) view.findViewById(R.id.txtTitle);
 
         }
     }
